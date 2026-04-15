@@ -1,14 +1,15 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=23573974&assignment_repo_type=AssignmentRepo)
 # Day 10 Lab: Data Pipeline & Data Observability
 
-**Student Email:** email@example.com
-**Name:** (Dien ten cua ban)
+**Student ID:** AI20K-2A202600451
+**Student Email:** trung.nt202717@gmail.com
+**Name:** Nguyen Thanh Trung
 
 ---
 
 ## Mo ta
 
-(Mo ta ngan gon bai lab va nhung gi ban da lam)
+Bai lab nay xay dung mot ETL Pipeline don gian voi 4 buoc: Extract du lieu tu file JSON, Validate de loai bo records khong hop le (gia <= 0, category rong), Transform de tinh gia giam 10% va chuan hoa category, va Load de xuat ra file CSV. Ngoai ra, bai lab con thuc hien stress test so sanh ket qua cua AI Agent khi su dung du lieu sach va du lieu rac de minh chung tam quan trong cua Data Quality.
 
 ---
 
@@ -26,7 +27,8 @@ python solution.py
 
 ### Chay Agent Simulation (Stress Test)
 ```bash
-# Mo ta cach ban chay thi nghiem Clean vs Garbage data
+python generate_garbage.py
+python agent_simulation.py
 ```
 
 ---
@@ -35,8 +37,12 @@ python solution.py
 
 ```
 ├── solution.py              # ETL Pipeline script
-├── processed_data.csv       # Output cua pipeline
-├── experiment_report.md     # Bao cao thi nghiem
+├── raw_data.json            # Du lieu dau vao (5 records)
+├── processed_data.csv       # Output cua pipeline (3 records hop le)
+├── generate_garbage.py      # Script tao du lieu rac
+├── agent_simulation.py      # Script mo phong AI Agent
+├── experiment_report.md     # Bao cao thi nghiem stress test
+├── tests/                   # Thu muc chua test autograder
 └── README.md                # File nay
 ```
 
@@ -44,4 +50,9 @@ python solution.py
 
 ## Ket qua
 
-(Tom tat ket qua: bao nhieu records da xu ly, bao nhieu bi loai, v.v.)
+- Tong so records dau vao: 5
+- Records hop le sau validation: 3 (Laptop, Chair, Monitor)
+- Records bi loai: 2 (Mystery Box — gia am, Phone — category rong)
+- Cot moi: discounted_price (gia giam 10%), processed_at (timestamp)
+- Ket qua Agent voi clean data: chinh xac (Laptop - $1200)
+- Ket qua Agent voi garbage data: sai (Nuclear Reactor - $999999)
